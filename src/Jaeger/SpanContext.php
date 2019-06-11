@@ -43,7 +43,7 @@ class SpanContext implements \OpenTracing\SpanContext{
     public $debugId;
 
 
-    public function __construct($spanId, $parentId, $flags, $baggage = null, $debugId = 0){
+    public function __construct($spanId, $parentId, $flags, $baggage = [], $debugId = 0){
         $this->spanId = $spanId;
         $this->parentId = $parentId;
         $this->flags = $flags;
@@ -64,7 +64,7 @@ class SpanContext implements \OpenTracing\SpanContext{
 
     public function getIterator()
     {
-        // TODO: Implement getIterator() method.
+        return new \ArrayIterator($this->baggage);
     }
 
 
