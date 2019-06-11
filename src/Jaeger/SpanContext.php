@@ -64,7 +64,7 @@ class SpanContext implements \OpenTracing\SpanContext{
 
     public function getIterator()
     {
-        return new \ArrayIterator($this->baggage);
+        return new \ArrayIterator($this->baggage ?: []);
     }
 
 

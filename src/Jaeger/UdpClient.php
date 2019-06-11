@@ -27,12 +27,12 @@ class UdpClient{
 
     private $host = '';
 
-    private $post = '';
+    private $port = '';
 
     private $socket = '';
 
-    public function __construct($hostPost){
-        list($this->host, $this->post) = explode(":", $hostPost);
+    public function __construct($hostPort){
+        list($this->host, $this->port) = explode(":", $hostPort);
         $this->socket = socket_create(AF_INET, SOCK_DGRAM, SOL_UDP);
     }
 
@@ -55,7 +55,7 @@ class UdpClient{
         if(isset($buildThrift['len']) && $buildThrift['len'] && $this->isOpen()) {
             $len = $buildThrift['len'];
             $enitThrift = $buildThrift['thriftStr'];
-            $res = socket_sendto($this->socket, $enitThrift, $len, 0, $this->host, $this->post);
+            $res = socket_sendto($this->socket, $enitThrift, $len, 0, $this->host, $this->port);
             if($res === false) {
                 throw new \Exception("emit failse");
             }
