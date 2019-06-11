@@ -41,7 +41,7 @@ class JaegerPropagator implements Propagator{
             $k = strtolower($k);
             $v = urldecode($v);
             if($k == Constants\Tracer_State_Header_Name){
-                list($traceId, $spanId, $parentId,$flags) = explode(':', $carrier[strtoupper($k)]);
+                list($traceId, $spanId, $parentId,$flags) = explode(':', $v);
 
                 $spanContext->spanId = $spanContext->hexToSignedInt($spanId);
                 $spanContext->parentId = $spanContext->hexToSignedInt($parentId);
